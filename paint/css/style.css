@@ -390,11 +390,24 @@ nav a.active {
     color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 20px;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-content h3 {
+    color: var(--secondary-color);
+    transform: translateX(5px);
 }
 
 .service-content p {
     font-size: 14px;
     color: #666;
+    transition: var(--transition);
+    transition-delay: 0.1s;
+}
+
+.service-card:hover .service-content p {
+    color: #333;
+    transform: translateX(5px);
 }
 
 /* Contact Banner */
