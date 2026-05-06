@@ -215,6 +215,14 @@ nav a.active {
     color: var(--secondary-color);
 }
 
+/* Sidebar elements hidden by default (Desktop) */
+.sidebar-header, 
+.sidebar-info-section, 
+.sidebar-card,
+.close-sidebar {
+    display: none;
+}
+
 .menu-toggle {
     display: none;
     font-size: 24px;
@@ -690,44 +698,247 @@ footer {
         display: block;
     }
 
-    nav ul {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Hidden by default */
-        width: 280px;
-        height: 100vh;
-        background-color: var(--primary-color);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 100px;
-        gap: 0;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-        display: flex;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1001;
-    }
-
-    nav ul.active {
-        right: 0;
-    }
-
-    nav ul li {
-        width: 100%;
-        text-align: left;
-    }
-
-    nav a {
-        display: block;
-        padding: 20px 30px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        color: var(--white);
-        font-size: 16px;
-    }
-
     .menu-toggle {
         display: block;
         position: relative;
         z-index: 1002;
+    }
+
+    /* New Sidebar Wrapper */
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 320px;
+        height: 100vh;
+        background-color: var(--white);
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        overflow-y: auto;
+        display: block; /* Override default if needed */
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    /* Show sidebar elements on mobile */
+    .sidebar-header, 
+    .sidebar-info-section, 
+    .sidebar-card,
+    .close-sidebar {
+        display: flex;
+    }
+
+    .sidebar-info-section {
+        display: block; /* Section uses block/flex internal logic */
+    }
+
+    .sidebar-header .logo-text {
+        display: block;
+    }
+
+    .nav-content {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 40px;
+    }
+
+    /* Sidebar Header */
+    .sidebar-header {
+        padding: 30px 20px;
+        background-color: var(--white);
+        border-bottom: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .sidebar-header img {
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-header .logo-text {
+        font-size: 14px;
+        display: block;
+    }
+
+    .close-sidebar {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    /* Sidebar Links */
+    nav ul.nav-links {
+        position: static;
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: none;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        padding: 15px 30px;
+        color: var(--primary-color);
+        font-weight: 600;
+        border-bottom: 1px solid #f5f5f5;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav ul li a::after {
+        content: '\f105';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 12px;
+        opacity: 0.5;
+    }
+
+    nav ul li a.active {
+        color: var(--secondary-color);
+        background-color: #f9f9f9;
+    }
+
+    /* Professional Emails Section */
+    .sidebar-info-section {
+        padding: 25px 20px;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+
+    .sidebar-info-section h3 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 10px;
+    }
+
+    .side-email-item {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .side-email-item i {
+        background-color: var(--white);
+        color: var(--primary-color);
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .side-email-item div strong {
+        display: block;
+        font-size: 12px;
+        word-break: break-all;
+    }
+
+    .side-email-item div span {
+        font-size: 10px;
+        color: #aaa;
+    }
+
+    /* Business Card Section */
+    .sidebar-card {
+        margin: 20px;
+        background-color: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
+    }
+
+    .card-top {
+        background-color: var(--primary-color);
+        padding: 15px;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-top i {
+        font-size: 30px;
+        color: var(--secondary-color);
+    }
+
+    .card-top h4 {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .card-top span {
+        font-size: 11px;
+        color: #ccc;
+        font-weight: 400;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        font-size: 12px;
+        color: #555;
+    }
+
+    .card-item i {
+        color: var(--secondary-color);
+        width: 15px;
+        text-align: center;
+    }
+
+    .card-services {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ddd;
+    }
+
+    .card-services ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+
+    .card-services li {
+        font-size: 10px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #666;
+    }
+
+    .card-services li i {
+        color: var(--secondary-color);
+        font-size: 8px;
     }
 
     .menu-overlay {
@@ -747,12 +958,12 @@ footer {
     }
 
     .logo-text {
-        font-size: 14px; /* Reduced for more formal look on small screens */
+        font-size: 14px;
         letter-spacing: 0.5px;
     }
 
     .logo img {
-        height: 45px; /* Slightly smaller for balance */
+        height: 45px;
     }
 }
 

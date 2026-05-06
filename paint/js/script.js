@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const mainNav = document.getElementById('main-nav');
+    const closeSidebar = document.querySelector('.close-sidebar');
 
-    if (menuToggle) {
+    if (menuToggle && mainNav) {
         // Create overlay element if it doesn't exist
         let overlay = document.querySelector('.menu-overlay');
         if (!overlay) {
@@ -12,42 +13,26 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(overlay);
         }
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            overlay.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu open
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                document.body.style.overflow = '';
-            }
-        });
+        const openMenu = () => {
+            mainNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
 
-        // Close menu when clicking overlay
-        overlay.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+        const closeMenu = () => {
+            mainNav.classList.remove('active');
             overlay.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
             document.body.style.overflow = '';
-        });
+        };
+
+        menuToggle.addEventListener('click', openMenu);
+        if (closeSidebar) closeSidebar.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
 
         // Close menu when clicking a link
         const navItems = document.querySelectorAll('.nav-links a');
         navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                overlay.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                document.body.style.overflow = '';
-            });
+            item.addEventListener('click', closeMenu);
         });
     }
 
