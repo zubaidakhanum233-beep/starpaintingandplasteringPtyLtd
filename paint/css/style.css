@@ -839,36 +839,15 @@ footer {
         font-size: 14px;
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-bottom: 0;
+        margin-bottom: 20px;
         text-align: left;
         border-bottom: 1px solid rgba(255,255,255,0.1);
-        padding: 15px 0;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .sidebar-info-section h3::after {
-        content: '\f107';
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        transition: transform 0.3s ease;
-    }
-
-    .sidebar-info-section.active h3::after {
-        transform: rotate(180deg);
+        padding-bottom: 10px;
+        color: var(--white);
     }
 
     .sidebar-info-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out, padding 0.3s ease;
-    }
-
-    .sidebar-info-section.active .sidebar-info-content {
-        max-height: 500px;
-        padding-top: 20px;
+        display: block;
     }
 
     .side-email-item {
@@ -901,48 +880,27 @@ footer {
         color: #aaa;
     }
 
-    /* Business Card Section as Accordion */
+    /* Business Card Section */
     .sidebar-card {
-        margin: 0 20px;
+        margin: 20px;
         background-color: var(--white);
-        border-radius: 0;
+        border-radius: 8px;
         overflow: hidden;
-        box-shadow: none;
-        border: none;
-        border-bottom: 1px solid #eee;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
     }
 
     .card-top {
-        background-color: transparent;
-        padding: 15px 0;
-        color: var(--primary-color);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-    }
-
-    .card-top-info {
+        background-color: var(--primary-color);
+        padding: 15px;
+        color: var(--white);
         display: flex;
         align-items: center;
         gap: 15px;
     }
 
-    .card-top::after {
-        content: '\f107';
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        transition: transform 0.3s ease;
-        font-size: 14px;
-        opacity: 0.5;
-    }
-
-    .sidebar-card.active .card-top::after {
-        transform: rotate(180deg);
-    }
-
     .card-top i {
-        font-size: 20px;
+        font-size: 24px;
         color: var(--secondary-color);
     }
 
@@ -953,25 +911,14 @@ footer {
         font-weight: 700;
     }
 
-    .card-top span {
-        display: none; /* Hide subtitle in accordion header */
-    }
-
     .card-body {
-        max-height: 0;
-        overflow: hidden;
-        padding: 0;
-        transition: max-height 0.3s ease-out, padding 0.3s ease;
-    }
-
-    .sidebar-card.active .card-body {
-        max-height: 500px;
-        padding: 15px 0;
+        padding: 15px;
+        display: block;
     }
 
     .card-item {
         display: flex;
-        align-items: flex-start; /* Better for multi-line text */
+        align-items: flex-start;
         gap: 10px;
         margin-bottom: 12px;
         font-size: 13px;
@@ -979,26 +926,11 @@ footer {
     }
 
     .card-item span, .card-item a {
-        word-break: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 220px;
+        word-break: break-all;
         line-height: 1.4;
         color: inherit;
-        display: block;
-    }
-
-    .sidebar-info-section h3, .card-top {
-        background-color: #f0f0f0; /* Light gray to make it stand out as a button */
-        padding: 12px 15px;
-        border-radius: 4px;
-        margin-bottom: 5px;
-        color: var(--primary-color) !important;
-    }
-
-    .sidebar-info-section h3 {
-        border-bottom: none;
+        white-space: normal;
+        max-width: none;
     }
 
     .side-email-item a:hover, .card-item a:hover {
