@@ -34,6 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
         navItems.forEach(item => {
             item.addEventListener('click', closeMenu);
         });
+
+        // Sidebar Accordion Logic
+        const accordionHeaders = document.querySelectorAll('.sidebar-info-section h3, .sidebar-card .card-top');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const parent = header.parentElement;
+                parent.classList.toggle('active');
+                
+                // Optional: Close other accordions when one opens
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== header) {
+                        otherHeader.parentElement.classList.remove('active');
+                    }
+                });
+            });
+        });
     }
 
     // Scroll Animations
