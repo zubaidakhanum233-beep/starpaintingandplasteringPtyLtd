@@ -979,9 +979,26 @@ footer {
     }
 
     .card-item span, .card-item a {
-        word-break: break-all;
+        word-break: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 220px;
         line-height: 1.4;
         color: inherit;
+        display: block;
+    }
+
+    .sidebar-info-section h3, .card-top {
+        background-color: #f0f0f0; /* Light gray to make it stand out as a button */
+        padding: 12px 15px;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        color: var(--primary-color) !important;
+    }
+
+    .sidebar-info-section h3 {
+        border-bottom: none;
     }
 
     .side-email-item a:hover, .card-item a:hover {
