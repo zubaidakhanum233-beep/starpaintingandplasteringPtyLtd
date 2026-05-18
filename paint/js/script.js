@@ -29,11 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeSidebar) closeSidebar.addEventListener('click', closeMenu);
         overlay.addEventListener('click', closeMenu);
 
-        // Close menu when clicking a link
-        const navItems = document.querySelectorAll('.nav-links a');
-        navItems.forEach(item => {
-            item.addEventListener('click', closeMenu);
-        });
+        // Mobile menu links will navigate naturally to new pages
     }
 
     // Scroll Animations
@@ -54,4 +50,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
+
+    // Lightbox for Gallery/Images
+    const createLightbox = () => {
+        let lightbox = document.createElement('div');
+        lightbox.className = 'lightbox-overlay';
+        
+        let lightboxImg = document.createElement('img');
+        lightboxImg.className = 'lightbox-img';
+        
+        let closeBtn = document.createElement('div');
+        closeBtn.className = 'lightbox-close';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        
+        lightbox.appendChild(lightboxImg);
+        lightbox.appendChild(closeBtn);
+        document.body.appendChild(lightbox);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        const images = document.querySelectorAll('.service-img img, .ad-item img');
+        images.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                let src = img.getAttribute('src');
+                if (src) {
+                    lightboxImg.src = src;
+                    lightbox.classList.add('active');
+                }
+            });
+        });
+    };
+    
+    createLightbox();
+
+    // Split Screen Scroll Effect (Ups n Down)
+    const sidebarScroll = () => {
+        const sidebar = document.querySelector('.home-right');
+        const container = document.querySelector('.sidebar-scroll-container');
+        
+        if (!sidebar || !container || window.innerWidth <= 992) return;
+
+        const updateSidebarScroll = () => {
+            if (window.innerWidth <= 992) {
+                container.style.transform = 'translateY(0)';
+                return;
+            }
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
+            
+            const containerHeight = container.offsetHeight;
+            const sidebarHeight = sidebar.offsetHeight;
+            const travel = containerHeight - sidebarHeight;
+
+            if (travel > 0) {
+                container.style.transform = `translateY(-${scrollPercent * travel}px)`;
+            }
+        };
+
+        window.addEventListener('scroll', updateSidebarScroll);
+        window.addEventListener('resize', updateSidebarScroll);
+        updateSidebarScroll();
+    };
+    
+    sidebarScroll();
 });
