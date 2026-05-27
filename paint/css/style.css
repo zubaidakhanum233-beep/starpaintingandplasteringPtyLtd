@@ -1899,3 +1899,99 @@ nav a {
 .sidebar-business-card .card-content {
     cursor: pointer;
 }
+
+/* ── Hero License Badge ── */
+.hero-licence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(216, 154, 38, 0.25), rgba(216, 154, 38, 0.08));
+    border: 1px solid rgba(216, 154, 38, 0.5);
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(216, 154, 38, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: floatBadge 3s ease-in-out infinite;
+}
+
+.hero-licence-badge i {
+    color: var(--mockup-gold);
+    font-size: 16px;
+}
+
+@keyframes floatBadge {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* ── Animated Title Styles ── */
+.animated-title {
+    perspective: 1000px;
+}
+
+.animated-title .line {
+    display: block;
+    opacity: 0;
+    transform: translateY(40px) rotateX(-15deg);
+    transform-origin: top center;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-new-content.show .animated-title .line-1 {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    transition-delay: 0.1s;
+}
+
+.hero-new-content.show .animated-title .line-2 {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    transition-delay: 0.3s;
+}
+
+.hero-new-content.show .animated-title .line-3 {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    transition-delay: 0.5s;
+}
+
+/* ── Shimmering Gold Text ── */
+.shimmer-gold {
+    color: var(--mockup-gold);
+    background: linear-gradient(to right, #d89a26 0%, #fff6d1 25%, #d89a26 50%, #fff6d1 75%, #d89a26 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 4s linear infinite;
+    display: inline-block;
+}
+
+/* ── Shimmering White Text ── */
+.shimmer-white {
+    color: var(--white);
+    background: linear-gradient(to right, #ffffff 0%, #ffe9a6 25%, #ffffff 50%, #ffe9a6 75%, #ffffff 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 4s linear infinite;
+    display: inline-block;
+}
+
+@keyframes shineText {
+    to {
+        background-position: 200% center;
+    }
+}
